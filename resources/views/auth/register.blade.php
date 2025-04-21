@@ -40,7 +40,7 @@
           <p>Kode-E</p>
         </div>
         <button class="border-2 rounded-full w-10 h-10 flex items-center justify-center">
-          <i class="fa-solid fa-display"></i>
+          <span class="iconify lucide--monitor size-5"></span>
         </button>
       </div>
       <div class="flex grow flex-col items-center justify-center mt-5">
@@ -50,7 +50,9 @@
           <fieldset class="fieldset">
             <legend class="text-sm font-normal">Full Name</legend>
             <label class="input w-full @error('name') border-2 border-error @enderror">
-              <span class="label"><i class="fa-regular fa-id-badge"></i></span>
+              <span class="label">
+                <span class="iconify lucide--users size-5"></span>
+              </span>
               <input type="text" placeholder="Full Name" name="name" value="{{ old('name') }}" />
             </label>
             @error("name")
@@ -60,7 +62,7 @@
           <fieldset class="fieldset mt-3">
             <legend class="text-sm font-normal">Email Address</legend>
             <label class="input w-full @error('email') border-2 border-error @enderror">
-              <span class="label"><i class="fa-regular fa-envelope"></i></span>
+              <span class="label"><span class="iconify lucide--mail size-5"></span></span>
               <input type="email" placeholder="Email Address" name="email" value="{{ old('email') }}" />
             </label>
             @error("email")
@@ -72,17 +74,25 @@
               <div class="w-full md:w-6/12">
                 <legend class="text-sm font-normal">Password</legend>
                 <label class="input w-full @error('password') border-2 border-error @enderror">
-                  <span class="label"><i class="fa-solid fa-key"></i></i></span>
+                  <span class="label">
+                    <span class="iconify lucide--key-round size-5"></span>
+                  </span>
                   <input type="password" placeholder="Password" name="password" />
-                  <button type="button" class="label"><i class="fa-solid fa-eye"></i></button>
+                  <button type="button" class="label">
+                    <span class="iconify lucide--eye size-5"></span>
+                  </button>
                 </label>
               </div>
               <div class="w-full md:w-6/12 mt-3 md:mt-0">
                 <legend class="text-sm font-normal">Confirm Password</legend>
                 <label class="input w-full @error('password') border-2 border-error @enderror">
-                  <span class="label"><i class="fa-solid fa-key"></i></i></span>
+                  <span class="label">
+                    <span class="iconify lucide--key-round size-5"></span>
+                  </span>
                   <input type="password" placeholder="Confirm Password" name="password_confirmation" />
-                  <button type="button" class="label"><i class="fa-solid fa-eye"></i></button>
+                  <button type="button" class="label">
+                    <span class="iconify lucide--eye size-5"></span>
+                  </button>
                 </label>
               </div>
             </div>
@@ -122,15 +132,15 @@
         button.addEventListener('click', function(e) {
           e.preventDefault();
           const inputPassword = button.closest('label').querySelector('input');
-          const iconButtonPassword = (this).querySelector('i');
+          const iconButtonPassword = (this).querySelector('span.iconify');
           if (inputPassword.type === 'password') {
             inputPassword.type = 'text';
-            iconButtonPassword.classList.add('fa-eye-slash');
-            iconButtonPassword.classList.remove('fa-eye');
+            iconButtonPassword.classList.add('lucide--eye-closed');
+            iconButtonPassword.classList.remove('lucide--eye');
           } else {
             inputPassword.type = 'password';
-            iconButtonPassword.classList.add('fa-eye');
-            iconButtonPassword.classList.remove('fa-eye-slash');
+            iconButtonPassword.classList.add('lucide--eye');
+            iconButtonPassword.classList.remove('lucide--eye-closed');
           }
         })
       });

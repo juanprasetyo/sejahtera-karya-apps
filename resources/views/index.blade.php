@@ -66,7 +66,7 @@
             <a href="#">Contact</a>
           </li>
           <li class="w-full flex items-center justify-center border-b lg:border-none">
-            <a class="w-full btn btn-primary text-primary-content border-none hover:scale-110" href="#">Daftar</a>
+            <a class="w-full btn btn-primary text-primary-content border-none hover:scale-110" href="{{ route('register') }}">Daftar</a>
           </li>
         </ul>
       </nav>
@@ -523,7 +523,7 @@
         <div class="w-full md:w-6/12 mt-5 md:px-10 lg:pl-20">
           <h1 class="text-left text-xl lg:text-3xl font-bold">Sejahtera Karya</h1>
           <p class="text-left text-3xl lg:text-5xl leading-tight font-extrabold lg:mt-10">Dari <span class="text-primary">Warga</span>, <br> Untuk <span class="text-primary">Desa</span>, <br> Untuk <span class="text-primary">Masyarakat</span>.</p>
-          <a class="w-auto btn btn-accent text-base text-accent-content gap-3 mt-5 lg:mt-10 border-none hover:scale-110" href="#">
+          <a class="w-auto btn btn-accent text-base text-accent-content gap-3 mt-5 lg:mt-10 border-none hover:scale-110" href="{{ route('register') }}">
             <span class="iconify lucide--user-round-plus size-4"></span>
             Daftar
           </a>
@@ -755,7 +755,7 @@
         <h2 class="text-3xl font-semibold my-5">Saatnya Bangun Desa Bersama-sama</h2>
         <p>Gabung sekarang dan jadi bagian dari perubahan positif di desa Anda</p>
         <div class="w-full flex justify-center">
-          <a class="w-auto btn btn-accent text-base text-accent-content gap-3 mt-5 lg:mt-10 border-none hover:scale-110" href="#">
+          <a class="w-auto btn btn-accent text-base text-accent-content gap-3 mt-5 lg:mt-10 border-none hover:scale-110" href="{{ route('register') }}">
             <span class="iconify lucide--user-round-plus size-4"></span>
             Daftar sekarang
           </a>

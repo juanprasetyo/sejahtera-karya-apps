@@ -41,7 +41,7 @@
           <p>Kode-E</p>
         </div>
         <button class="border-2 rounded-full w-10 h-10 flex items-center justify-center">
-          <i class="fa-solid fa-display"></i>
+          <span class="iconify lucide--monitor size-5"></span>
         </button>
       </div>
       <div class="w-full flex grow flex-col items-center justify-center mt-5">
@@ -58,16 +58,22 @@
           <fieldset class="fieldset mt-3">
             <legend class="text-sm font-normal">Email</legend>
             <label class="input w-full">
-              <span class="label"><i class="fa-solid fa-envelope"></i></i></span>
+              <span class="label">
+                <span class="iconify lucide--mail size-5"></span>
+              </span>
               <input type="email" name="email" value="{{ request()->get('email') }}" readonly>
             </label>
           </fieldset>
           <fieldset class="fieldset input-password mt-3">
             <legend class="text-sm font-normal">Password</legend>
             <label class="input w-full @error('password') border-2 border-error @enderror">
-              <span class="label"><i class="fa-solid fa-key"></i></i></span>
+              <span class="label">
+                <span class="iconify lucide--key-round size-5"></span>
+              </span>
               <input type="password" placeholder="Password" name="password" />
-              <button type="button" class="label"><i class="fa-solid fa-eye"></i></button>
+              <button type="button" class="label">
+                <span class="iconify lucide--eye size-5"></span>
+              </button>
             </label>
             @error("password")
               <span class="text-xs text-red-500">{{ $message }}</span>
@@ -76,16 +82,20 @@
           <fieldset class="fieldset input-password mt-3">
             <legend class="text-sm font-normal">Confirm Password</legend>
             <label class="input w-full @error('password_confirmation') border-2 border-error @enderror">
-              <span class="label"><i class="fa-solid fa-key"></i></i></span>
+              <span class="label">
+                <span class="iconify lucide--key-round size-5"></span>
+              </span>
               <input type="password" placeholder="Confirm Password" name="password_confirmation" />
-              <button type="button" class="label"><i class="fa-solid fa-eye"></i></button>
+              <button type="button" class="label">
+                <span class="iconify lucide--eye size-5"></span>
+              </button>
             </label>
             @error("password_confirmation")
               <span class="text-xs text-red-500">{{ $message }}</span>
             @enderror
           </fieldset>
           <button type="submit" class="btn w-full mt-5 bg-primary hover:bg-primary-900 text-white text-sm space-x-2 rounded-lg">
-            <i class="fa-solid fa-user-plus"></i>
+            <span class="iconify lucide--user-plus size-5"></span>
             <span>Change Password</span>
           </button>
         </form>
@@ -107,15 +117,15 @@
         button.addEventListener('click', function(e) {
           e.preventDefault();
           const inputPassword = button.closest('label').querySelector('input');
-          const iconButtonPassword = (this).querySelector('i');
+          const iconButtonPassword = (this).querySelector('span.iconify');
           if (inputPassword.type === 'password') {
             inputPassword.type = 'text';
-            iconButtonPassword.classList.add('fa-eye-slash');
-            iconButtonPassword.classList.remove('fa-eye');
+            iconButtonPassword.classList.add('lucide--eye-closed');
+            iconButtonPassword.classList.remove('lucide--eye');
           } else {
             inputPassword.type = 'password';
-            iconButtonPassword.classList.add('fa-eye');
-            iconButtonPassword.classList.remove('fa-eye-slash');
+            iconButtonPassword.classList.add('lucide--eye');
+            iconButtonPassword.classList.remove('lucide--eye-closed');
           }
         })
       });

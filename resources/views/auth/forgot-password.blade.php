@@ -38,7 +38,7 @@
           <p>Kode-E</p>
         </div>
         <button class="border-2 rounded-full w-10 h-10 flex items-center justify-center">
-          <i class="fa-solid fa-display"></i>
+          <span class="iconify lucide--monitor size-5"></span>
         </button>
       </div>
       <div class="w-full flex grow flex-col items-center justify-center mt-5">
@@ -54,12 +54,12 @@
           <fieldset class="fieldset">
             <legend class="text-sm font-normal">Email Address</legend>
             <label class="input w-full @error('email') border-2 border-error @enderror">
-              <span class="label"><i class="fa-regular fa-envelope"></i></span>
+              <span class="label"><span class="iconify lucide--mail size-5"></span></span>
               <input type="email" placeholder="Email Address" name="email" />
             </label>
           </fieldset>
           <button type="submit" class="btn w-full mt-5 bg-primary hover:bg-primary-900 text-white text-sm space-x-2 rounded-lg">
-            <i class="fa-solid fa-right-to-bracket"></i>
+            <span class="iconify lucide--send size-5"></span>
             <span>Send a reset link</span>
           </button>
         </form>

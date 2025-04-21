@@ -36,7 +36,7 @@
           <p>Kode-E</p>
         </div>
         <button class="border-2 rounded-full w-10 h-10 flex items-center justify-center">
-          <i class="fa-solid fa-display"></i>
+          <span class="iconify lucide--monitor size-5"></span>
         </button>
       </div>
       <div class="w-full flex grow flex-col items-center justify-center mt-5">
@@ -53,7 +53,9 @@
           <fieldset class="fieldset">
             <legend class="text-sm font-normal">Email Address</legend>
             <label class="input w-full @error('email') border-2 border-error @enderror">
-              <span class="label"><i class="fa-regular fa-envelope"></i></span>
+              <span class="label">
+                <span class="iconify lucide--mail size-5"></span>
+              </span>
               <input type="email" placeholder="Email Address" name="email" value="{{ old('email') }}" />
             </label>
             @error("email")
@@ -63,9 +65,9 @@
           <fieldset class="fieldset input-password mt-3">
             <legend class="text-sm font-normal">Password</legend>
             <label class="input w-full @error('password') border-2 border-error @enderror">
-              <span class="label"><i class="fa-solid fa-key"></i></i></span>
+              <span class="label"><span class="iconify lucide--key-round size-5"></span></span>
               <input type="password" placeholder="Password" name="password" />
-              <button type="button" class="label"><i class="fa-solid fa-eye"></i></button>
+              <button type="button" class="label"><span class="iconify lucide--eye size-5"></span></button>
             </label>
             @error("password")
               <span class="text-xs text-red-500">{{ $message }}</span>
@@ -94,17 +96,17 @@
     <script>
         const inputPassword = document.querySelector('.input-password input');
         const buttonPassword = document.querySelector('.input-password button');
-        const iconButtonPassword = buttonPassword.querySelector('i');
+        const iconButtonPassword = buttonPassword.querySelector('span.iconify');
 
         buttonPassword.addEventListener('click', () => {
             if (inputPassword.type === 'password') {
                 inputPassword.type = 'text';
-                iconButtonPassword.classList.add('fa-eye-slash');
-                iconButtonPassword.classList.remove('fa-eye');
+                iconButtonPassword.classList.add('lucide--eye-closed');
+                iconButtonPassword.classList.remove('lucide--eye');
             } else {
                 inputPassword.type = 'password';
-                iconButtonPassword.classList.add('fa-eye');
-                iconButtonPassword.classList.remove('fa-eye-slash');
+                iconButtonPassword.classList.add('lucide--eye');
+                iconButtonPassword.classList.remove('lucide--eye-closed');
             }
         });
     </script>
