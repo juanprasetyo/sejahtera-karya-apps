@@ -11,10 +11,6 @@ Route::get('/home', function () {
     return view('welcome');
 })->middleware(['auth', 'verified']);
 
-Route::get('/test', function () {
-    return view('test');
-});
-
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::get('/', [AdminDashboardController::class, 'index'])->name('index');
 });
