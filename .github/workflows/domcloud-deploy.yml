@@ -22,6 +22,8 @@ jobs:
           key: ${{ secrets.DOMCLOUD_SSH_KEY }}
           script: |
             cd /home/sejahtera-karya-app/public_html
+            git reset --hard HEAD
+            git clean -fd
             git pull origin main
 
             # Install PHP dependencies
