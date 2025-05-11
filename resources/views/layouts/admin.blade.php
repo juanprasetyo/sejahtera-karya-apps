@@ -5,7 +5,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <title>Admin | Dashboard</title>
+      <title>{{ $title ?? 'Sejahtera Karya' }}</title>
 
       <!-- Fonts -->
       <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,18 +38,23 @@
       const closeSidebar = document.querySelector('.close-sidebar');
       const sidebarElement = document.querySelector('#sidebar');
 
+      const toggleMultipleClasses = (element, classNames) => {
+        classNames.forEach(className => element.classList.toggle(className));
+      };
+
+      const sidebarClassesToggle = ['lg:hidden', 'ms-0'];
+
       buttonsSidebar.forEach(buttonSidebar => {
         buttonSidebar.addEventListener('click', function(event) {
           event.preventDefault();
-          sidebarElement.classList.toggle('lg:hidden');
-          sidebarElement.classList.toggle('ms-0');
+          toggleMultipleClasses(sidebarElement, sidebarClassesToggle);
           closeSidebar.classList.toggle('hidden');
         })
       });
 
       closeSidebar.addEventListener('click', function () {
-        sidebarElement.classList.toggle('lg:hidden');
-        sidebarElement.classList.toggle('ms-0');
+        event.preventDefault();
+        toggleMultipleClasses(sidebarElement, sidebarClassesToggle);
         closeSidebar.classList.toggle('hidden');
       });
     </script>

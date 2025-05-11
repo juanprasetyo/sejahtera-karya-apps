@@ -27,7 +27,7 @@
           color: var(--color-primary);
         }
 
-        nav li a:not(.btn):hover:after, .active:after {
+        nav .nav-link:not(.btn):hover:after, .active:after {
           content: "";
           display: block;
           width: 50%;
@@ -54,19 +54,85 @@
       <nav class="w-full lg:w-auto absolute lg:relative top-[70px] lg:top-0 hidden lg:block bg-base-300 lg:bg-transparent">
         <ul class="flex flex-col lg:flex-row items-center justify-center lg:justify-end lg:space-x-4">
           <li class="w-full py-3 flex items-center justify-center border-b lg:border-none">
-            <a href="{{ url('/') }}" class="active">Home</a>
+            <a href="{{ url('/') }}" class="nav-link active">Home</a>
           </li>
           <li class="w-full py-3 flex items-center justify-center border-b lg:border-none">
-            <a href="#">About</a>
+            <a href="#" class="nav-link">About</a>
           </li>
           <li class="w-full py-3 flex items-center justify-center border-b lg:border-none">
-            <a href="#">Home</a>
+            <a href="#" class="nav-link">Home</a>
           </li>
           <li class="w-full py-3 flex items-center justify-center border-b lg:border-none">
-            <a href="#">Contact</a>
+            <a href="#" class="nav-link">Contact</a>
           </li>
-          <li class="w-full flex items-center justify-center border-b lg:border-none">
-            <a class="w-full btn btn-primary text-primary-content border-none hover:scale-110" href="{{ route('register') }}">Daftar</a>
+          <li class="w-full flex items-center justify-center space-x-4 border-b lg:border-none">
+            @auth
+              <div class="dropdown lg:dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost text-primary px-1.5">
+                  <div class="flex items-center gap-2">
+                    <div class="avatar">
+                      <div class="bg-base-200 mask mask-circle w-8">
+                        <img alt="Avatar" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp">
+                      </div>
+                    </div>
+                    <div class="-space-y-0.5 text-start">
+                      <p class="text-sm capitalize text-nowrap">{{ Auth::user()->name }}</p>
+                      <p class="text-base-content/60 capitalize text-xs">{{ in_array('admin', Auth::user()->getRoleNames()->toArray()) ? 'super admin' : (in_array('pemdes', Auth::user()->getRoleNames()->toArray() ? 'admin pemdes' : 'user')) }}</p>
+                    </div>
+                  </div>
+                </div>
+                <div tabindex="0" class="dropdown-content bg-base-100 rounded-box w-50 shadow my-2">
+                  <ul class="menu w-full p-2">
+                    <li>
+                      <a href="/pages/settings" data-discover="true">
+                        <span class="iconify lucide--user size-4"></span>
+                        <span>My Profile</span>
+                      </a>
+                    </li>
+                  </ul>
+                  <hr class="border-base-300">
+                  <ul class="menu w-full p-2">
+                    @role('admin')
+                    <li>
+                      <a href="{{ route('admin.index') }}" data-discover="true">
+                        <span class="iconify lucide--user-round-cog size-4"></span>
+                        <span>Dashboard Admin</span>
+                      </a>
+                    </li>
+                    @endrole
+                    @role('pemdes')
+                    <li>
+                      <a href="{{ route('pemdes.index') }}" data-discover="true">
+                        <span class="iconify lucide--briefcase-business size-4"></span>
+                        <span>Dashboard Pemdes</span>
+                      </a>
+                    </li>
+                    @endrole
+                    <li>
+                      <a href="{{ url('/home') }}" data-discover="true">
+                        <span class="iconify lucide--home size-4"></span>
+                        <span>Dashboard User</span>
+                      </a>
+                    </li>
+                  </ul>
+                  <hr class="border-base-300">
+                  <ul class="menu w-full p-2">
+                    <li>
+                      <a class="text-error hover:bg-error/10" href="/auth/login" data-discover="true">
+                        <span class="iconify lucide--log-out size-4"></span>
+                        <span>
+                          <form action="http://localhost:8000/logout" method="post">
+                            <input type="hidden" name="_token" value="x03oLUvJLqhrX30GXcduPbzDRZhpzNXk4QutXlDn" autocomplete="off">                  <button type="submit">Logout</button>
+                          </form>
+                        </span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            @else
+              <a class="btn btn-primary text-primary-content border-none hover:scale-110" href="{{ route('login') }}">Login</a>
+            @endauth
           </li>
         </ul>
       </nav>
@@ -751,9 +817,9 @@
         </div>
       </section>
 
-      <section class="min-h-screen text-base-content flex flex-col items-center justify-center">
-        <h2 class="text-3xl font-semibold my-5">Saatnya Bangun Desa Bersama-sama</h2>
-        <p>Gabung sekarang dan jadi bagian dari perubahan positif di desa Anda</p>
+      <section class="min-h-screen w-10/12 lg:w-full mx-auto text-base-content flex flex-col items-center justify-center">
+        <h2 class="text-3xl font-semibold my-5 text-center">Saatnya Bangun Desa Bersama-sama</h2>
+        <p class="text-center">Gabung sekarang dan jadi bagian dari perubahan positif di desa Anda</p>
         <div class="w-full flex justify-center">
           <a class="w-auto btn btn-accent text-base text-accent-content gap-3 mt-5 lg:mt-10 border-none hover:scale-110" href="{{ route('register') }}">
             <span class="iconify lucide--user-round-plus size-4"></span>

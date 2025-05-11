@@ -2,14 +2,19 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Pemdes\DashboardController as PemdesDashboardController;
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('index');
 
 Route::get('/home', function () {
     return view('welcome');
-})->middleware(['verified']);
+})->middleware(['auth', 'verified']);
 
-Route::prefix('admin')->middleware(['auth', 'verified', 'role:admin'])->group(function () {
-    Route::get('/', [DashboardController::class, 'index']);
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified', 'role:admin'])->group(function () {
+    Route::get('/', [AdminDashboardController::class, 'index'])->name('index');
+});
+
+Route::prefix('pemdes')->name('pemdes.')->middleware(['auth', 'verified', 'role:pemdes'])->group(function () {
+    Route::get('/', [PemdesDashboardController::class, 'index'])->name('index');
 });

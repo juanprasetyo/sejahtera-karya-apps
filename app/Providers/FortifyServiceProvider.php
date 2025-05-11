@@ -5,9 +5,11 @@ namespace App\Providers;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Laravel\Fortify\Fortify;
+use Illuminate\Support\Facades\Auth;
 use App\Actions\Fortify\CreateNewUser;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Support\Facades\Redirect;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use Illuminate\Support\Facades\RateLimiter;
@@ -23,7 +25,21 @@ class FortifyServiceProvider extends ServiceProvider
     {
         $this->app->instance(LoginResponse::class, new class implements LoginResponse {
             public function toResponse($request) {
-                return redirect('/admin');
+
+                $roles = Auth::user()->roles->toArray();
+                $roles_name = array_map(function($role) {
+                    return $role['name'];
+                }, $roles);
+                
+                if (in_array('admin', $roles_name)) {
+                    return redirect()->intended('admin');
+                }
+
+                if (in_array('pemdes', $roles_name)) {
+                    return redirect()->intended('pemdes');
+                }
+
+                return redirect()->intended();
             }
         });
     }
