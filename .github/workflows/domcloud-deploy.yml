@@ -1,0 +1,42 @@
+name: Deploy Laravel + Vite ke DomCloud
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy via SSH ke DomCloud
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout kode
+        uses: actions/checkout@v3
+
+      - name: Deploy ke DomCloud via SSH
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.DOMCLOUD_HOST }}
+          username: ${{ secrets.DOMCLOUD_USER }}
+          key: ${{ secrets.DOMCLOUD_SSH_KEY }}
+          script: |
+            cd /home/sejahtera-karya-apps
+            git pull origin main
+
+            # Install PHP dependencies
+            composer install --no-dev --optimize-autoloader
+
+            # Install Node modules & build Vite
+            npm install
+            npm run build
+
+            # Laravel permission & artisan
+            php artisan migrate --force
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
+
+            # Set file permissions
+            chmod -R 775 storage
+            chmod -R 775 bootstrap/cache
