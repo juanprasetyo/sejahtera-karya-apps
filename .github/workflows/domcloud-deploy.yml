@@ -21,7 +21,7 @@ jobs:
           username: ${{ secrets.DOMCLOUD_USER }}
           key: ${{ secrets.DOMCLOUD_SSH_KEY }}
           script: |
-            cd /home/sejahtera-karya-apps
+            cd /home/sejahtera-karya-apps/public_html
             git pull origin main
 
             # Install PHP dependencies
