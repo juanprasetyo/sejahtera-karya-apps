@@ -77,7 +77,7 @@
                     </div>
                     <div class="-space-y-0.5 text-start">
                       <p class="text-sm capitalize text-nowrap">{{ Auth::user()->name }}</p>
-                      <p class="text-base-content/60 capitalize text-xs">{{ in_array('admin', Auth::user()->getRoleNames()->toArray()) ? 'super admin' : (in_array('pemdes', Auth::user()->getRoleNames()->toArray() ? 'admin pemdes' : 'user')) }}</p>
+                      <p class="text-base-content/60 capitalize text-xs">{{ in_array('admin', Auth::user()->getRoleNames()->toArray()) ? 'super admin' : (in_array('pemdes', Auth::user()->getRoleNames()->toArray()) ? 'admin pemdes' : 'user') }}</p>
                     </div>
                   </div>
                 </div>
