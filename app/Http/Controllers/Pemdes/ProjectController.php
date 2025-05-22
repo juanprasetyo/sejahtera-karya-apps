@@ -17,9 +17,9 @@ class ProjectController extends Controller
     {
         $keywords = $request->input('keywords', "");
         $perPage = $request->input('perPage', '10');
-        $user_id = Auth::id();
+        $userId = Auth::id();
         $data = Project::select('id', 'name as nama', 'start_date as tanggal_mulai', 'end_date as tanggal_berakhir', 'required_workers as pekerja_dibutuhkan')
-                        ->where('user_id', $user_id)
+                        ->where('user_id', $userId)
                         ->where('name', 'like', '%' . $keywords . '%')
                         ->orderBy('id', 'desc')
                         ->paginate($perPage)
@@ -38,7 +38,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('pemdes.projects.create');
     }
 
     /**
@@ -46,7 +46,30 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $userId = Auth::id();
+        $validatedData = $request->validate([
+            'name' => 'required|min:3|max:50',
+            'description' => 'required|min:20|max:500',
+            'start_date' => 'required|after_or_equal:today',
+            'end_date' => 'required|after_or_equal:start_date',
+            'required_workers' => 'required|gt:1'
+        ]);
+
+        try {
+            $project = Project::create([
+                'user_id' => $userId,
+                ...$validatedData,
+            ]);
+            if ($project) return redirect()
+                                    ->route('pemdes.projects.create')
+                                    ->with('status', 'success')
+                                    ->with('message', 'Proyek berhasil dibuat.');
+        } catch (\Throwable $th) {
+            return redirect()
+                ->route('pemdes.projects.create')
+                ->with('status', 'error')
+                ->with('status', $th);
+        }
     }
 
     /**

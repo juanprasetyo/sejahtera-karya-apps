@@ -23,7 +23,7 @@
             <a href="{{ route('pemdes.projects.index') }}" class="h-8 flex items-center px-3 hover:bg-base-200 rounded-sm {{ Route::currentRouteName() === "pemdes.projects.index" ? "bg-base-200" : ""}}">
               <span class="grow">List Proyek</span>
             </a>
-            <a href="{{ route('pemdes.projects.index') }}" class="h-8 flex items-center px-3 hover:bg-base-200 rounded-sm">
+            <a href="{{ route('pemdes.projects.create') }}" class="h-8 flex items-center px-3 hover:bg-base-200 rounded-sm">
               <span class="grow">Tambah Proyek</span>
             </a>
           </div>
