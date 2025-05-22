@@ -23,7 +23,7 @@ class ProjectController extends Controller
                         ->where('name', 'like', '%' . $keywords . '%')
                         ->orderBy('id', 'desc')
                         ->paginate($perPage)
-                        ->appends(['perPage' => $perPage])
+                        ->appends(['perPage' => $perPage, 'keywords' => $keywords])
                         ->onEachSide(1);
 
         if ($request->ajax()) {

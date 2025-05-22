@@ -1,6 +1,11 @@
 @extends('layouts.admin')
 
 @section('content')
+  @php
+      parse_str(parse_url($data->url($data->currentPage()))['query'], $params);
+      $keywords = $params['keywords'];
+  @endphp
+  
   <h3 class="text-lg font-medium mx-2">Proyek</h3>
   <div class="mt-6 mx-2 card shadow bg-base-100">
     <div class="card-body" id="projects_list">
@@ -23,7 +28,7 @@
         <div class="inline-flex items-center gap-3 mt-3 md:mt-0">
           <label class="input input-sm">
             <span class="iconify lucide--search text-base-content/80 size-3.5"></span>
-            <input class="w-24 md:w-36" placeholder="Cari Proyek" aria-label="Cari Proyek" type="search">
+            <input class="w-24 md:w-36" placeholder="Cari Proyek" aria-label="Cari Proyek" value="{{ $keywords }}" type="search">
           </label>
         </div>
       </div>
