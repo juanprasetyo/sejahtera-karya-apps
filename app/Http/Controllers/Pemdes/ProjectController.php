@@ -77,7 +77,18 @@ class ProjectController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $userId = Auth::id();
+        $project = Project::with('user')->find($id);
+
+        if (!$project) {
+            return abort(404);
+        }
+
+        if ($project->user_id !== $userId) {
+            return abort(403, 'Kamu tidak memiliki akses ke proyek ini.');
+        }
+        
+        return view('pemdes.projects.detail', compact('project'));
     }
 
     /**
@@ -112,7 +123,7 @@ class ProjectController extends Controller
 
         if ($project->user_id !== $userId) {
             return response()->json([
-                'message' => "Kamu tidak punya akses."
+                'message' => "Kamu tidak punya akses!"
             ], 400);
         }
 
